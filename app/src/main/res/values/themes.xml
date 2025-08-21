@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.LegacyMapWebBluetooth" parent="Base.Theme.LegacyMapWebBluetooth" />
+
+    <style name="CardText" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/fab_margin</item>
+        <item name="android:padding">@dimen/fab_margin</item>
+        <item name="android:textSize">50dp</item>
+    </style>
 </resources>

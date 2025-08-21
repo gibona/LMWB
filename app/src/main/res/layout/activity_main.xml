@@ -20,6 +20,65 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cardview_height"
+                android:layout_margin="@dimen/fab_margin"
+                android:clickable="true">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/CardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/map_pin_review_24px"
+                    android:text="@string/map" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/web"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cardview_height"
+                android:layout_margin="@dimen/fab_margin"
+                android:clickable="true">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/CardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/web_24px"
+                    android:text="@string/web" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bluetooth"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cardview_height"
+                android:layout_margin="@dimen/fab_margin"
+                android:clickable="true">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/CardText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/bluetooth_searching_24px"
+                    android:text="@string/bluetooth" />
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -28,7 +87,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/account_circle_24px"
         tools:ignore="ContentDescription" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

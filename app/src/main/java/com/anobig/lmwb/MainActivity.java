@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 		setContentView(R.layout.activity_main);
 
-		setSupportActionBar(findViewById(R.id.appBar));
+		setSupportActionBar(findViewById(R.id.toolbar));
 
 
 		findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 		int id = item.getItemId();
 
 		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
+		if (id == R.id.action_logout) {
 			return true;
 		}
 
