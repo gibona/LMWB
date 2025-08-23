@@ -11,4 +11,9 @@
     <string name="no_internet">Network error. Please check you internet connection.</string>
     <string name="internet_settings">Internet settings</string>
     <string name="noApplications">No apps to perform this action</string>
+    <string name="prompt">Prompt</string>
+    <string name="alert">Alert</string>
+    <string name="ok">OK</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -26,6 +26,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".WebView"
+            android:theme="@style/Theme.LegacyMapWebBluetooth"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

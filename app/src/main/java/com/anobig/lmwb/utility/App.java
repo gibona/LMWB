@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.view.Gravity;
 import android.widget.Toast;
 
+import com.anobig.lmwb.MainActivity;
 import com.anobig.lmwb.R;
 
 public class App extends Application {
@@ -39,6 +40,20 @@ public class App extends Application {
 	public void startActivity(Intent intent) {
 		try {
 			super.startActivity(intent);
+		}
+		catch (ActivityNotFoundException e) {
+			Toast toast = Toast.makeText(App.get(), R.string.noApplications , Toast.LENGTH_LONG);
+			toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+			toast.show();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void startActivity(MainActivity activity, Intent intent) {
+		try {
+			activity.startActivity(intent);
 		}
 		catch (ActivityNotFoundException e) {
 			Toast toast = Toast.makeText(App.get(), R.string.noApplications , Toast.LENGTH_LONG);

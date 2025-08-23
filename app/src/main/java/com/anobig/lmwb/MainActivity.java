@@ -61,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
+		findViewById(R.id.web).setOnClickListener(view ->
+				App.get().startActivity(MainActivity.this, new Intent(App.get(), WebView.class))
+		);
+
 		updateProfilePic();
 	}
 
