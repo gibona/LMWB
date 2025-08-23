@@ -4,4 +4,11 @@
     <string name="map">Map</string>
     <string name="web">WEB</string>
     <string name="bluetooth">Bluetooth</string>
+    <string name="already_logged_in">Already logged in</string>
+    <string name="welcome">Welcome back, %1$s</string>
+    <string name="already_logged_out">Already logged out</string>
+    <string name="good_bye">Good bye, %1$s</string>
+    <string name="no_internet">Network error. Please check you internet connection.</string>
+    <string name="internet_settings">Internet settings</string>
+    <string name="noApplications">No apps to perform this action</string>
 </resources>

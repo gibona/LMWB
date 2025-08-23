@@ -1,22 +1,32 @@
 package com.anobig.lmwb;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.http.NetworkException;
 import android.os.Bundle;
 
+import com.anobig.lmwb.basic.User;
+import com.anobig.lmwb.basic.UserSessionManager;
+import com.anobig.lmwb.utility.App;
+import com.anobig.lmwb.utility.ProxyDrawable;
+import com.anobig.lmwb.utility.RoundDrawable;
+import com.anobig.lmwb.utility.WebImageUtil;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.provider.Settings;
 import android.view.View;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.anobig.lmwb.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,34 +39,100 @@ public class MainActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_main);
 
 		setSupportActionBar(findViewById(R.id.toolbar));
-
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+				String message = App.get().getString(R.string.already_logged_in);
+				if (UserSessionManager.get().getUser() == null) {
+					User user = new User("Aleksandar", "https://anobig.com/me_2025.jpg");
+					UserSessionManager.get().logUser(user);
+
+					message = App.get().getString(R.string.welcome, user.getName());
+					updateProfilePic();
+				}
+
+				Snackbar.make(view, message, Snackbar.LENGTH_LONG)
 						.setAnchorView(R.id.fab)
-						.setAction("Action", null).show();
+						.show();
+
+
 			}
 		});
+
+		updateProfilePic();
+	}
+
+	private void updateProfilePic() {
+		String profilePic = null;
+		User user = UserSessionManager.get().getUser();
+		if (user != null)
+			profilePic = user.getProfilePictureURL();
+
+		Drawable defaultDrawable = AppCompatResources.getDrawable(this, R.drawable.account_circle_24px);
+		final ProxyDrawable proxyDrawable = new ProxyDrawable(defaultDrawable);
+
+		if (profilePic == null) {
+			proxyDrawable.setProxy(defaultDrawable);
+		}
+		else {
+			WebImageUtil.loadDrawable(profilePic, new WebImageUtil.ImageContainer() {
+				@Override
+				public void onLoaded(Bitmap bitmap) {
+					if (bitmap == null)
+						return;
+					proxyDrawable.setProxy(new RoundDrawable(bitmap, defaultDrawable));
+				}
+
+				@Override
+				public void onError(Exception exception) {
+					if (exception instanceof IOException) {
+						Snackbar.make(findViewById(R.id.fab), R.string.no_internet, Snackbar.LENGTH_LONG)
+								.setAnchorView(R.id.fab)
+								.setAction(R.string.internet_settings, view -> {
+									Intent wiFiSettings = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
+									wiFiSettings.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+									App.get().startActivity(wiFiSettings);
+								})
+								.show();
+					}
+				}
+			});
+		}
+		getSupportActionBar().setHomeAsUpIndicator(proxyDrawable);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		updateProfilePic();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.menu_main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 
-		//noinspection SimplifiableIfStatement
 		if (id == R.id.action_logout) {
+			String message = App.get().getString(R.string.already_logged_out);
+			User oldUser = UserSessionManager.get().getUser();
+			if (oldUser != null) {
+				UserSessionManager.get().logoutUser();
+				message = App.get().getString(R.string.good_bye, oldUser.getName());
+			}
+
+			Snackbar.make(findViewById(R.id.fab), message, Snackbar.LENGTH_LONG)
+					.setAnchorView(R.id.fab)
+					.show();
+
+			updateProfilePic();
+
 			return true;
 		}
 
