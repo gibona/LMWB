@@ -3,11 +3,13 @@ package com.anobig.lmwb.utility;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Loading image from the web with Async task
+ */
 public class WebImageUtil {
 
 	public interface ImageContainer {
@@ -33,6 +35,10 @@ public class WebImageUtil {
 				return null;
 			}
 
+			/**
+			 * Progress is used for error handling
+			 * @param values
+			 */
 			@Override
 			protected void onProgressUpdate(Exception... values) {
 				super.onProgressUpdate(values);

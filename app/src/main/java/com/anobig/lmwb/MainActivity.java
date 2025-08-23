@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 		setSupportActionBar(findViewById(R.id.toolbar));
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		// FAB button binding
 		findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
@@ -61,10 +62,12 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
+		// Web card binding
 		findViewById(R.id.web).setOnClickListener(view ->
 				App.get().startActivity(MainActivity.this, new Intent(App.get(), WebView.class))
 		);
 
+		// Updates the profile picture if logged in
 		updateProfilePic();
 	}
 
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
 				@Override
 				public void onError(Exception exception) {
+					// Show user friendly error with option to open Android settings and enable internet connection
 					if (exception instanceof IOException) {
 						Snackbar.make(findViewById(R.id.fab), R.string.no_internet, Snackbar.LENGTH_LONG)
 								.setAnchorView(R.id.fab)
@@ -104,17 +108,20 @@ public class MainActivity extends AppCompatActivity {
 				}
 			});
 		}
+
 		getSupportActionBar().setHomeAsUpIndicator(proxyDrawable);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+		// Updates the profile picture if logged in or network error
 		updateProfilePic();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		// Adds logout menu item
 		getMenuInflater().inflate(R.menu.menu_main, menu);
 		return true;
 	}
@@ -123,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
 
+		//Handle logout
 		if (id == R.id.action_logout) {
 			String message = App.get().getString(R.string.already_logged_out);
 			User oldUser = UserSessionManager.get().getUser();

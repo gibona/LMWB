@@ -6,6 +6,9 @@ import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
+/**
+ * Utility drawable to show placeholder until the real image is loaded
+ */
 public class ProxyDrawable extends Drawable {
 
 	private Drawable proxy;

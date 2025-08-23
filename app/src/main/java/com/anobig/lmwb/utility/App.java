@@ -11,6 +11,9 @@ import android.widget.Toast;
 import com.anobig.lmwb.MainActivity;
 import com.anobig.lmwb.R;
 
+/**
+ * Override system Application object for faster access to utility functions
+ */
 public class App extends Application {
 
 	@SuppressLint("StaticFieldLeak")
@@ -42,6 +45,7 @@ public class App extends Application {
 			super.startActivity(intent);
 		}
 		catch (ActivityNotFoundException e) {
+			// Sometimes there is no activity to handle this request
 			Toast toast = Toast.makeText(App.get(), R.string.noApplications , Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 			toast.show();
@@ -56,6 +60,7 @@ public class App extends Application {
 			activity.startActivity(intent);
 		}
 		catch (ActivityNotFoundException e) {
+			// Sometimes there is no activity to handle this request
 			Toast toast = Toast.makeText(App.get(), R.string.noApplications , Toast.LENGTH_LONG);
 			toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
 			toast.show();

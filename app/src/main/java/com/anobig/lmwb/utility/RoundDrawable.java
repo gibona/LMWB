@@ -11,6 +11,9 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 
+/**
+ * Utility drawable that makes the content round
+ */
 public class RoundDrawable extends Drawable {
 	private final Bitmap bitmap;
 	private int intrinsicWidth = App.dpToPx(75), intrinsicHeight = App.dpToPx(75);
@@ -29,7 +32,6 @@ public class RoundDrawable extends Drawable {
         this.bitmap = bitmap;
     }*/
 
-	@SuppressWarnings("SuspiciousNameCombination")
 	@Override
 	public void draw(Canvas canvas) {
 		float nw, nh;

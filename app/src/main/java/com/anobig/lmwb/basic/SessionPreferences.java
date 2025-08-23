@@ -13,6 +13,7 @@ class SessionPreferences {
 
 	private static volatile SharedPreferences preferences = null;
 
+	//Singleton implementation
 	static SharedPreferences get() {
 		if (preferences == null)
 			synchronized (UserSessionManager.class) {

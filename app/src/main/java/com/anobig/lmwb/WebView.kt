@@ -24,8 +24,9 @@ class WebView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.web_view)
-        var webView = findViewById<WebView>(R.id.webView)
+        val webView = findViewById<WebView>(R.id.webView)
 
+        // Local assets loader
         val assetLoader = WebViewAssetLoader.Builder()
             .addPathHandler("/assets/", WebViewAssetLoader.AssetsPathHandler(this))
             .setDomain("web")
@@ -41,6 +42,7 @@ class WebView : AppCompatActivity() {
             }
         }
 
+        //Override the style of JS Alert like dialogs
         webView.webChromeClient = object : WebChromeClient() {
             override fun onJsAlert(
                 view: WebView,
@@ -102,19 +104,23 @@ class WebView : AppCompatActivity() {
             }
         }
 
+        // Enable JS
         webView.settings.javaScriptEnabled = true
 
         // Setting this off for security. Off by default for SDK versions >= 16.
         webView.settings.allowFileAccessFromFileURLs = false;
-// Off by default, deprecated for SDK versions >= 30.
+
+        // Off by default, deprecated for SDK versions >= 30.
         webView.settings.allowUniversalAccessFromFileURLs = false;
-// Keeping these off is less critical but still a good idea, especially if your app is not
-// using file:// or content:// URLs.
+
+        // Keeping these off is less critical but still a good idea, especially if your app is not
+        // using file:// or content:// URLs.
         webView.settings.allowFileAccess = false;
         webView.settings.allowContentAccess = false;
 
         webView.loadUrl("https://web/assets/www/about.html")
 
+        //Handle webView back stack with standard android back button
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 if (webView.canGoBack())

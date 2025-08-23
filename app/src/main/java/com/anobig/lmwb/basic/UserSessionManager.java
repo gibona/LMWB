@@ -21,6 +21,9 @@ public class UserSessionManager {
 		return INSTANCE;
 	}
 
+	/**
+	 * logout the user
+	*/
 	public void logoutUser() {
 		currentUser = null;
 
@@ -31,6 +34,10 @@ public class UserSessionManager {
 
 	}
 
+	/**
+	 * Store the user object in shared preferences and memory
+	 * @param user - Basic user data
+	 */
 	public void logUser(User user) {
 		currentUser = user;
 
@@ -40,6 +47,11 @@ public class UserSessionManager {
 				.apply();
 	}
 
+	/**
+	 * Lazy load logged in user if available
+	 * Thread safe
+	 * @return the user if logged in
+	 */
 	@Nullable
 	public User getUser() {
 		if (!userLoaded) { // load user once

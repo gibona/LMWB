@@ -3,6 +3,9 @@ package com.anobig.lmwb.basic;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+/**
+ * User data class, POJO style used
+ */
 public class User {
 	@NonNull
 	private final String name;
