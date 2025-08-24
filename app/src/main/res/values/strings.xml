@@ -31,4 +31,11 @@
     <string name="bluetooth_disabled">Bluetooth is disabled</string>
     <string name="enable">Enable</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="name">Name:</string>
+    <string name="description">Description:</string>
+    <string name="add_pin">Add Pin information</string>
+    <string name="edit_pin">Edit Pin information</string>
+    <string name="add">Add</string>
+    <string name="edit">Save changes</string>
+    <string name="delete">Delete</string>
 </resources>

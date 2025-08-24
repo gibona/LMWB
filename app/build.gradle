@@ -1,20 +1,24 @@
 buildscript {
-    ext.kotlin_version = '1.8.22'
+    ext.kotlin_version = '2.1.20'
+    ext.room_version = "2.7.2"
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.12.1'
+        classpath 'com.android.tools.build:gradle:8.12.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+    id 'androidx.room' version "$room_version"
+    id("com.google.devtools.ksp") version "2.1.20-2.0.1"
+    id 'com.android.application'
+
 }
+
 apply plugin: 'kotlin-android'
 
 android {
     namespace 'com.anobig.lmwb'
-    compileSdk 35
+    compileSdkVersion 35
 
     defaultConfig {
         applicationId "com.anobig.lmwb"
@@ -33,19 +37,42 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         viewBinding true
     }
-    sourceSets.main.res.filter.exclude '*.template'
+
+    room {
+        schemaDirectory "$projectDir/schemas"
+    }
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+/*
+allprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions.jvmTarget = "17"
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KaptGenerateStubs).configureEach {
+        kotlinOptions.jvmTarget = "17"
+    }
+}
+*/
 dependencies {
 
     implementation libs.appcompat
@@ -60,8 +87,19 @@ dependencies {
     implementation libs.navigation.fragment.ktx
     implementation libs.navigation.ui.ktx
     implementation libs.play.services.maps
+    implementation libs.kotlinx.coroutines.reactive
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
     implementation ("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+
+    implementation "androidx.room:room-runtime:$room_version"
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See KSP Quickstart to add KSP to your build
+    ksp "androidx.room:room-compiler:$room_version"
+
+    // If this project only uses Java source, use the Java annotationProcessor
+    // No additional plugins are necessary
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }
