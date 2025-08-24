@@ -40,7 +40,7 @@ class BluetoothGattDetails(private val updateData: Runnable): BluetoothGattCallb
         super.onConnectionStateChange(gatt, status, newState)
         if (disconnected)
             return
-        
+
         device = gatt?.device
         this.gatt = gatt
         updateData.run()

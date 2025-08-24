@@ -30,4 +30,5 @@
     <string name="app_permissions">App settings</string>
     <string name="bluetooth_disabled">Bluetooth is disabled</string>
     <string name="enable">Enable</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

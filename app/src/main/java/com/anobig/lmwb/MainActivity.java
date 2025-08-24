@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.anobig.lmwb.basic.User;
 import com.anobig.lmwb.basic.UserSessionManager;
 import com.anobig.lmwb.bluetooth.BluetoothDeviceDetailHostActivity;
+import com.anobig.lmwb.map.MapsActivity;
 import com.anobig.lmwb.utility.App;
 import com.anobig.lmwb.utility.ProxyDrawable;
 import com.anobig.lmwb.utility.RoundDrawable;
@@ -71,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
 		// Bluetooth card binding
 		findViewById(R.id.bluetooth).setOnClickListener(view ->
 				App.get().startActivity(MainActivity.this, new Intent(App.get(), BluetoothDeviceDetailHostActivity.class))
+		);
+
+		// Map card binding
+		findViewById(R.id.map).setOnClickListener(view ->
+				App.get().startActivity(MainActivity.this, new Intent(App.get(), MapsActivity.class))
 		);
 
 		// Updates the profile picture if logged in
