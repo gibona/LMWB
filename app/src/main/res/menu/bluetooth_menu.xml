@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.anobig.lmwb.bluetooth.BluetoothDeviceDetailHostActivity">
+    <item
+        android:id="@+id/action_start"
+        android:icon="@drawable/play_circle_24px"
+        android:title="@string/action_start"
+        android:enabled="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_stop"
+        android:enabled="false"
+        android:icon="@drawable/stop_circle_24px"
+        android:title="@string/action_stop"
+        app:showAsAction="always" />
+</menu>

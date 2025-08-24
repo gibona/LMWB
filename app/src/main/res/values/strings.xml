@@ -16,4 +16,18 @@
     <string name="ok">OK</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_bluetooth_device_detail_host">BluetoothDeviceDetailHostActivity
+    </string>
+    <string name="title_bluetooth_device_list">Bluetooth Devices</string>
+    <string name="title_bluetooth_device_detail">Bluetooth Device Detail</string>
+    <string name="bluetooth_device_list">Bluetooth Device List</string>
+    <string name="bluetooth_device_detail">Bluetooth Device details</string>
+    <string name="action_start">Start</string>
+    <string name="action_stop">Stop</string>
+    <string name="bluetooth_required">Bluetooth required for this feature</string>
+    <string name="bluetooth_permission_needed">Bluetooth permission needed to use this feature.</string>
+    <string name="location_permission_needed">Location permission needed to use this feature.</string>
+    <string name="app_permissions">App settings</string>
+    <string name="bluetooth_disabled">Bluetooth is disabled</string>
+    <string name="enable">Enable</string>
 </resources>
