@@ -2,3 +2,10 @@
 To generate API key visit https://developers.google.com/maps/documentation/embed/get-api-key?setupProd=configure
 
 Put the API key in app/src/main/res/values/maps_api_key.xml file
+
+# Install the APK
+You can find the apk located in APK/app-lmwb.apk
+
+To install it use
+
+adb install app-lmwb.apk
