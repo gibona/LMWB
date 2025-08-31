@@ -88,6 +88,7 @@ dependencies {
     implementation libs.navigation.ui.ktx
     implementation libs.play.services.maps
     implementation libs.kotlinx.coroutines.reactive
+    implementation libs.play.services.location
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
